@@ -1,3 +1,15 @@
+dive_logbook:
+    resource: "@diveLogbookBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dive_club:
+    resource: "@diveClubBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dive_spot:
+    resource: "@diveSpotBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: @AppBundle/Controller/
     type:     annotation

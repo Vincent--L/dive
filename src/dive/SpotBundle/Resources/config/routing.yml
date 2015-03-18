@@ -1,0 +1,3 @@
+dive_spot_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: diveSpotBundle:Default:index }
