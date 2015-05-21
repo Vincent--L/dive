@@ -43,8 +43,9 @@ class Club
     private $password;
 
     /**
-     * @ORM\ManyToOne(targetEntity="dive\LogbookBundle\Entity\Country")
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
 
@@ -191,13 +192,24 @@ class Club
         return $this->password;
     }
 
-    public function setCountry(Country $country)
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Club
+     */
+    public function setCountry($country)
     {
         $this->country = $country;
 
         return $this;
     }
 
+    /**
+     * Get country
+     *
+     * @return string 
+     */
     public function getCountry()
     {
         return $this->country;

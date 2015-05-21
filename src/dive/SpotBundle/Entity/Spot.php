@@ -29,8 +29,9 @@ class Spot
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="dive\LogbookBundle\Entity\Country")
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255)
      */
     private $country;
 
@@ -96,13 +97,24 @@ class Spot
         return $this->name;
     }
 
-    public function setCountry(Country $country)
+    /**
+     * Set country
+     *
+     * @param string $country
+     * @return Spot
+     */
+    public function setCountry($country)
     {
         $this->country = $country;
 
         return $this;
     }
 
+    /**
+     * Get country
+     *
+     * @return string 
+     */
     public function getCountry()
     {
         return $this->country;

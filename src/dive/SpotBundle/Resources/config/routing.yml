@@ -1,3 +1,7 @@
-dive_spot_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: diveSpotBundle:Default:index }
+dive_spot_view:
+    path:     /spot/view/{id}
+    defaults: { _controller: diveSpotBundle:Default:view }
+    
+dive_spot_add:
+    path:     /spot/add
+    defaults: { _controller: diveSpotBundle:Default:add }
