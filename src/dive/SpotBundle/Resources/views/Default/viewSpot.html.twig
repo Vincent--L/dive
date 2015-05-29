@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>{{ spot.name|upper }}</h1>
+                <div class="well">
+                    Country : {{ spot.country|countryName }}.<br>
+                    Coordinates : {{ spot.lattitude }} | {{ spot.longitude }}.<br>
+                    Maximum depth : {{ spot.maxDepth }}m.<br>
+                    {{ spot.description }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

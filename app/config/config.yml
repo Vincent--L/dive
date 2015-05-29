@@ -5,7 +5,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -29,6 +29,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form:
+        resources: ['bootstrap_3_horizontal_layout.html.twig']
 
 # Assetic Configuration
 assetic:
@@ -71,3 +73,38 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+    
+fos_user:
+    db_driver:      orm
+    firewall_name:  main
+    user_class:     AppBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
+
+pugx_multi_user:
+  users:
+    diver:
+        entity: 
+          class: dive\LogbookBundle\Entity\Diver
+#          factory: 
+        registration:
+          form: 
+            type: dive\LogbookBundle\Form\Type\RegistrationDiverFormType
+            name: fos_user_registration_form
+            validation_groups:  [Registration, Default]
+          template: diveLogbookBundle:Registration:diver.form.html.twig
+        profile:
+          form:
+            type: dive\LogbookBundle\Form\Type\ProfileDiverFormType
+            name: fos_user_profile_form
+            validation_groups:  [Profile, Default] 
+    club:
+        entity: 
+          class: dive\ClubBundle\Entity\Club
+        registration:
+          form: 
+            type: dive\ClubBundle\Form\Type\RegistrationClubFormType
+          template: diveClubBundle:Registration:club.form.html.twig
+        profile:
+          form: 
+            type: dive\ClubBundle\Form\Type\ProfileClubFormType

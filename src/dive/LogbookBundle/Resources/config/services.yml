@@ -1,4 +1,8 @@
 services:
+    dive_diver.registration.form.type:
+        class: dive\LogbookBundle\Form\Type\RegistrationDiverFormType
+        tags:
+            - { name: form.type, alias: dive_diver_registration }
 #    dive_logbook.example:
 #        class: dive\LogbookBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

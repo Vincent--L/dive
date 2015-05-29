@@ -1,4 +1,8 @@
 services:
+    dive_club.registration.form.type:
+        class: dive\ClubBundle\Form\Type\RegistrationClubFormType
+        tags:
+            - { name: form.type, alias: dive_club_registration }
 #    dive_club.example:
 #        class: dive\ClubBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

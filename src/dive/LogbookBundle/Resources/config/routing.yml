@@ -1,3 +1,3 @@
-dive_logbook_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: diveLogbookBundle:Default:index }
+dive_logbook_view:
+    path:     /logbook
+    defaults: { _controller: diveLogbookBundle:Logbook:view }

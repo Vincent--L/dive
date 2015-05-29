@@ -3,14 +3,19 @@
 namespace dive\LogbookBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
+use AppBundle\Entity\User;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Diver
  *
- * @ORM\Table()
+ * @ORM\Table(name="diver")
  * @ORM\Entity(repositoryClass="dive\LogbookBundle\Entity\DiverRepository")
+ * @UniqueEntity(fields = "username", targetClass = "AppBundle\Entity\User", message="fos_user.username.already_used")
+ * @UniqueEntity(fields = "email", targetClass = "AppBundle\Entity\User", message="fos_user.email.already_used")
  */
-class Diver
+class Diver extends User
 {
     /**
      * @var integer
@@ -19,12 +24,13 @@ class Diver
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
+     * @Assert\Length(min=2, max=255)
      */
     private $firstName;
 
@@ -32,27 +38,15 @@ class Diver
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
+     * @Assert\Length(min=2, max=255)
      */
     private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, unique=true)
-     */
-    private $password;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date")
+     * @Assert\Date()
      */
     private $birthday;
 
@@ -60,6 +54,7 @@ class Diver
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\Country
      */
     private $country;
 
@@ -67,6 +62,7 @@ class Diver
      * @var string
      *
      * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     * @Assert\Length(min=2, max=255)
      */
     private $address;
     
@@ -74,16 +70,6 @@ class Diver
      * @ORM\ManyToMany(targetEntity="dive\ClubBundle\Entity\Certification", cascade={"persist"})
      */
     private $certifications;
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set firstName
@@ -129,52 +115,6 @@ class Diver
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return Diver
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     * @return Diver
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 
     /**

@@ -5,3 +5,7 @@ dive_spot_view:
 dive_spot_add:
     path:     /spot/add
     defaults: { _controller: diveSpotBundle:Default:add }
+    
+dive_spot_list:
+    path:     /spot/list
+    defaults: { _controller: diveSpotBundle:Default:list }

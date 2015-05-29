@@ -3,6 +3,7 @@
 namespace dive\SpotBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Spot
@@ -25,6 +26,7 @@ class Spot
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Assert\Length(min=2, max=255)
      */
     private $name;
 
@@ -53,6 +55,9 @@ class Spot
      * @var integer
      *
      * @ORM\Column(name="max_depth", type="smallint", nullable=true)
+     * @Assert\Range(min=5, max=150, 
+     *      minMessage="This is scuba diving, not snorkeling!",
+     *      maxMessage="We aren't diving in a submarine!")
      */
     private $maxDepth;
 

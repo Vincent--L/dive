@@ -20,6 +20,8 @@ class AppKernel extends Kernel
             new dive\SpotBundle\diveSpotBundle(),
             new dive\ClubBundle\diveClubBundle(),
             new dive\LogbookBundle\diveLogbookBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
