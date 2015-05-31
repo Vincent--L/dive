@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well">
+                    {{ form(formEdit) }}
+                </div>
+                <form action="{{ path('dive_logbook_viewDive', {'id': dive.id}) }}" method="post">
+                    <input type="submit" value="Delete dive" class="btn btn-danger btn-sm">
+                    {{ form_rest(formDelete) }}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

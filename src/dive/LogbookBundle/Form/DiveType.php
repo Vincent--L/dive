@@ -15,7 +15,11 @@ class DiveType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date', 'date')
+            ->add('date', 'date', array(
+                'format' => 'dd MM yyyy',
+                'years' => range(1920,date('Y')),
+                'placeholder' => ''
+            ))
             ->add('spot', 'entity', array(
                 'class' => 'diveSpotBundle:Spot',
                 'property' => 'name',
@@ -29,7 +33,10 @@ class DiveType extends AbstractType
                 'class' => 'diveLogbookBundle:Category',
                 'property' => 'name',
                 'multiple' => true,
-                'expanded' => true
+                'expanded' => true,
+                'label_attr' => array(
+                    'class' => 'checkbox-inline'
+                )
             ))
             ->add('save', 'submit')
         ;

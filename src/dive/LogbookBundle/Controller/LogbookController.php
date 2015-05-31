@@ -32,4 +32,39 @@ class LogbookController extends Controller
             'form' => $form->createView(),
         ));
     }
+    
+    public function viewDiveAction($id, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $dive = $em->getRepository('diveLogbookBundle:Dive')->find($id);
+        if (null === $dive){
+            throw new NotFoundHttpException("Dive n°".$id." does not exist.");
+        }
+        
+        $formEdit = $this->get('form.factory')->createNamedBuilder('formEdit', new DiveType(), $dive)->getForm();
+        $formDelete = $this->get('form.factory')->createNamedBuilder('formDelete')->getForm();
+        
+        if($request->request->has('formEdit')){
+            if($formEdit->handleRequest($request)->isValid()){
+                $em->flush();
+                return $this->redirect($this->generateUrl('dive_logbook_viewDive', array(
+                    'id' => $dive->getId()
+                )));
+            }
+        }
+        
+        if($request->request->has('formDelete')){
+            if($formDelete->handleRequest($request)->isValid()){
+                $em->remove($dive);
+                $em->flush();            
+                return $this->redirectToRoute('dive_logbook_view');
+            }
+        }
+        
+        return $this->render('diveLogbookBundle:Default:viewDive.html.twig', array(
+            'dive' => $dive,
+            'formEdit' => $formEdit->createView(),
+            'formDelete' => $formDelete->createView()
+        ));
+    }
 }

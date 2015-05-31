@@ -1,3 +1,7 @@
 dive_logbook_view:
     path:     /logbook
     defaults: { _controller: diveLogbookBundle:Logbook:view }
+    
+dive_logbook_viewDive:
+    path:     /logbook/dive/{id}
+    defaults: { _controller: diveLogbookBundle:Logbook:viewDive }
