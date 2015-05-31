@@ -4,6 +4,11 @@ parameters:
 #    parameter_name: value
 
 services:
+    app_user.diver_registration_listener:
+        class: AppBundle\EventListener\DiverRegistrationListener
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }
     app.twig.country_extension:
         class: AppBundle\Twig\CountryExtension
         tags:
