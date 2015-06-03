@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use dive\SpotBundle\Entity\Spot;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+class SpotController extends Controller
 {
     public function viewAction($id)
     {
@@ -55,12 +55,16 @@ class DefaultController extends Controller
             $em->persist($spot);
             $em->flush();
             
-            // $request->getSession()->getFlashBag()->add('notice', 'Spot successfully added.');
             return $this->redirect($this->generateUrl('dive_spot_view', array('id' => $spot->getId())));
         }
 
         return $this->render('diveSpotBundle:Default:addSpot.html.twig', array(
           'form' => $form->createView(),
         ));
+    }
+    
+    public function mapAction()
+    {
+        return $this->render('diveSpotBundle:Default:mapSpot.html.twig');
     }
 }

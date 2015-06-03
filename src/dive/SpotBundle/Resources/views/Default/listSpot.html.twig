@@ -1,20 +1,56 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
+{% endblock %}
+
 {% block body %}
     <div class="container main-content">
         <div class="row">
             <div class="col-md-12">
                 <h1>Diving sites list:</h1>
-                
-                <div class="list-group row">
-                    {% for spot in listSpot %}
-                        <a href="{{ path('dive_spot_view', {'id': spot.id}) }}" class="list-group-item col-md-6">
-                            <h4 class="list-group-item-heading">{{ spot.name }} <small>| {{spot.country|countryName }}</small></h4>
-                            <p class="list-group-item-text">{{ spot.description }}</p>
-                        </a>
-                    {% endfor %}
+                 <div class="table-primary">
+                    <table class="table table-striped table-bordered table-hover" id="spots-datatable">
+                        <thead>
+                            <tr>
+                                <th>Country</th>
+                                <th>Name</th>
+                                <th>Max Depth</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for spot in listSpot %}
+                                <tr id="{{ spot.id }}">
+                                    <td>{{ spot.country|countryName }}</td>
+                                    <td>{{ spot.name }}</td>
+                                    <td>{{ spot.maxDepth }}</td>
+                                    <td>{{ spot.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready( function(){
+           $('#spots-datatable').dataTable();
+        });
+        
+        $('#spots-datatable tbody tr').click(function(){
+            var spotId = $(this).attr('id');
+            var url = "{{ path('dive_spot_view', {'id': 'id'}) }}";
+            url = url.replace("id", spotId);
+            document.location.href = url;
+        });
+    </script>
 {% endblock %}

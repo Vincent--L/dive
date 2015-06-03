@@ -1,4 +1,9 @@
 services:
+    dive_spot.doctrine.map_xml:
+        class: dive\SpotBundle\EventListener\SpotMapXML
+        arguments: []
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
 #    dive_spot.example:
 #        class: dive\SpotBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]

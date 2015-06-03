@@ -1,11 +1,15 @@
 dive_spot_view:
     path:     /spot/view/{id}
-    defaults: { _controller: diveSpotBundle:Default:view }
+    defaults: { _controller: diveSpotBundle:Spot:view }
     
 dive_spot_add:
     path:     /spot/add
-    defaults: { _controller: diveSpotBundle:Default:add }
+    defaults: { _controller: diveSpotBundle:Spot:add }
     
 dive_spot_list:
     path:     /spot/list
-    defaults: { _controller: diveSpotBundle:Default:list }
+    defaults: { _controller: diveSpotBundle:Spot:list }
+
+dive_spot_map:
+    path:     /spot/map
+    defaults: { _controller: diveSpotBundle:Spot:map }
