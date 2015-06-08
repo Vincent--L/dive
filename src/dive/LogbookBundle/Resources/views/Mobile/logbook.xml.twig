@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dives>
+    {% for dive in logbook %}
+    <dive>
+        <date>{{ dive.date|date('d/m/Y') }}</date>
+        <spotName>{{ dive.spot.name }}</spotName>
+        <country>{{ dive.spot.country|countryName }}</country>
+        <duration>{{ dive.duration }}</duration>
+        <depth>{{ dive.depth }}</depth>
+        <categories>
+        {% for category in dive.categories %}
+            {{ category.name }}{% if not loop.last %} / {% endif %}
+        {% endfor %}
+        </categories>
+        <description>{{ dive.description }}</description>                         
+    </dive>
+    {% endfor %}
+</dives>

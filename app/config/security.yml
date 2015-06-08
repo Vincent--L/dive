@@ -23,6 +23,13 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
             
+        mobile:
+            pattern: ^/mobile
+            stateless: true
+            http_basic:
+                realm: "mobile authentification"
+                provider: main
+            
         main:
             pattern:   ^/
             anonymous: true
@@ -41,4 +48,5 @@ security:
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
         - { path: ^/logbook, roles: ROLE_DIVER }
+        - { path: ^/mobile, roles: ROLE_DIVER }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

@@ -5,3 +5,9 @@ dive_logbook_view:
 dive_logbook_viewDive:
     path:     /logbook/dive/{id}
     defaults: { _controller: diveLogbookBundle:Logbook:viewDive }
+    
+dive_mobile_logbook:
+    path: /mobile/logbook
+    defaults: { _controller: diveLogbookBundle:Mobile:logbook }
+    requirements:
+        _format: xml
